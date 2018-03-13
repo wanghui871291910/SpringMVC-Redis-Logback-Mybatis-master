@@ -12,7 +12,7 @@
      <context:component-scan base-package="com.redis" />
  
       <!-- 配置读取外部配置文件 -->
-    <context:property-placeholder location="classpath*:database.properties,classpath*:hibernate.properties" />
+    <context:property-placeholder location="classpath*:database.properties" />
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close" p:driverClassName="${cq_jdbc.driver}"
@@ -28,7 +28,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		 <!-- 自动扫描mapping.xml文件 <property name="mapperLocations" value="classpath:com/ssm/mapper/*.xml"></property> -->
-<!-- 		<property name="configLocation" value="classpath:mybatis-config.xml" /> -->
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
